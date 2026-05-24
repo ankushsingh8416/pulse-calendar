@@ -7,12 +7,6 @@ import { Sun, Moon, Monitor, Trash2, Code2, Sparkles, Heart } from "lucide-react
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/settings")({
-  head: () => ({
-    meta: [
-      { title: "Settings — Pulse" },
-      { name: "description", content: "Customize Pulse — appearance, categories, and data." },
-    ],
-  }),
   component: () => (
     <AppShell>
       <Settings />
@@ -42,8 +36,8 @@ function Settings() {
           ].map((opt) => (
             <button
               key={opt.value}
-              onClick={() => setTheme(opt.value as any)}
-              className={`p-4 rounded-xl border transition-all ${theme === opt.value ? "border-primary shadow-glow" : "border-border hover:bg-accent"}`}
+              onClick={() => setTheme(opt.value as "light" | "dark" | "system")}
+              className={`p-4 rounded-xl border transition-all text-center ${theme === opt.value ? "border-primary shadow-glow" : "border-border hover:bg-accent"}`}
             >
               <opt.icon className="size-5 mx-auto mb-2" />
               <div className="text-sm font-medium">{opt.label}</div>
@@ -57,7 +51,10 @@ function Settings() {
         <p className="text-sm text-muted-foreground mb-4">Color-coded labels for your events.</p>
         <div className="flex flex-wrap gap-2">
           {categories.map((c) => (
-            <div key={c.id} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background text-sm">
+            <div
+              key={c.id}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background text-sm"
+            >
               <span className="size-2.5 rounded-full" style={{ background: c.color }} />
               {c.name}
             </div>
@@ -99,7 +96,8 @@ function Settings() {
             <div className="font-bold text-lg">Pulse Calendar</div>
             <div className="text-sm text-muted-foreground">Version 1.0.0 · 2026</div>
             <p className="text-sm text-muted-foreground leading-relaxed mt-2 max-w-md">
-              A premium, beautifully designed event calendar and reminder app. Plan your days with style — all stored locally in your browser. No account needed.
+              A premium, beautifully designed event calendar and reminder app. Plan your days with
+              style — all stored locally in your browser. No account needed.
             </p>
           </div>
         </div>

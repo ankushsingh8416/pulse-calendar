@@ -10,14 +10,6 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Pulse — Premium event calendar & reminders" },
-      { name: "description", content: "A premium, beautifully designed event calendar and reminder app. Plan your days with style — all stored locally in your browser." },
-      { property: "og:title", content: "Pulse — Premium event calendar" },
-      { property: "og:description", content: "Plan events, set reminders, and stay on top of your schedule with a stunning local-first calendar." },
-    ],
-  }),
   component: () => (
     <AppShell>
       <Dashboard />
@@ -37,7 +29,7 @@ function Dashboard() {
   const today = format(new Date(), "EEEE, MMMM d");
 
   return (
-    <div className="space-y-6 max-w-[1400px] mx-auto">
+    <div className="space-y-6 max-w-350 mx-auto">
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
