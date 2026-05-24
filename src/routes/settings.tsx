@@ -3,7 +3,7 @@ import { AppShell } from "@/components/layout/AppShell";
 import { useTheme } from "@/hooks/useTheme";
 import { useCalendarStore } from "@/store/useCalendarStore";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon, Monitor, Trash2 } from "lucide-react";
+import { Sun, Moon, Monitor, Trash2, Code2, Sparkles, Heart } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/settings")({
@@ -68,21 +68,59 @@ function Settings() {
       <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
         <h2 className="font-semibold mb-1">Data</h2>
         <p className="text-sm text-muted-foreground mb-4">
-          {events.length} events stored locally in your browser.
+          {events.length} events stored locally in your browser. No server, no cloud.
         </p>
-        <Button
-          variant="outline"
-          className="rounded-xl text-destructive"
-          onClick={() => {
-            if (confirm("Delete all events? This cannot be undone.")) {
-              localStorage.removeItem("calendar-app-state");
-              toast.success("All data cleared. Reloading…");
-              setTimeout(() => location.reload(), 800);
-            }
-          }}
-        >
-          <Trash2 className="size-4 mr-2" /> Clear all data
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            className="rounded-xl text-destructive hover:bg-destructive/10"
+            onClick={() => {
+              if (confirm("Delete all events? This cannot be undone.")) {
+                localStorage.removeItem("calendar-app-state");
+                toast.success("All data cleared. Reloading…");
+                setTimeout(() => location.reload(), 800);
+              }
+            }}
+          >
+            <Trash2 className="size-4 mr-2" /> Clear all data
+          </Button>
+          <span className="text-xs text-muted-foreground">This will permanently delete all your events.</span>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+        <h2 className="font-semibold mb-1">About</h2>
+        <p className="text-sm text-muted-foreground mb-5">About this application.</p>
+        <div className="flex items-start gap-4">
+          <div className="size-14 rounded-2xl gradient-primary grid place-items-center shadow-glow shrink-0">
+            <Sparkles className="size-6 text-primary-foreground" />
+          </div>
+          <div className="space-y-1">
+            <div className="font-bold text-lg">Pulse Calendar</div>
+            <div className="text-sm text-muted-foreground">Version 1.0.0 · 2026</div>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 max-w-md">
+              A premium, beautifully designed event calendar and reminder app. Plan your days with style — all stored locally in your browser. No account needed.
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 pt-5 border-t border-border flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="size-8 rounded-xl gradient-primary grid place-items-center shadow-glow">
+              <Code2 className="size-4 text-primary-foreground" />
+            </div>
+            <div>
+              <div className="text-sm font-semibold flex items-center gap-1.5">
+                Made with <Heart className="size-3.5 text-destructive fill-destructive" /> by Ankush
+              </div>
+              <div className="text-xs text-muted-foreground">Built with React, TanStack, and Tailwind CSS</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span className="px-2 py-1 rounded-lg bg-muted font-mono">React 19</span>
+            <span className="px-2 py-1 rounded-lg bg-muted font-mono">TanStack</span>
+            <span className="px-2 py-1 rounded-lg bg-muted font-mono">Tailwind v4</span>
+          </div>
+        </div>
       </section>
     </div>
   );

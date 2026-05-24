@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Sidebar, MobileNav } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
+import { Footer } from "@/components/layout/Footer";
 import { EventModal } from "@/components/modals/EventModal";
 import { useTheme } from "@/hooks/useTheme";
 import { Toaster } from "@/components/ui/sonner";
@@ -30,6 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="flex-1 flex flex-col min-w-0">
         <Topbar onNewEvent={() => ctxRef!.openNewEvent()} />
         <main className="flex-1 p-4 lg:p-8 pb-24 lg:pb-8">{children}</main>
+        <Footer />
       </div>
       <MobileNav />
       <EventModal open={open} onOpenChange={setOpen} initialDate={initialDate} editingId={editingId} />
